@@ -1,0 +1,53 @@
+<table>
+  <thead>
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Color</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="5" *ngIf="cars.length === 0">
+        No Data
+      </td>
+    </tr>
+    <tr *ngFor="let car of cars">
+      <td>{{car.make}}</td>
+      <td>{{car.model}}</td>
+      <td>{{car.year}}</td>
+      <td>{{car.color}}</td>
+      <td>{{car.price | currency:'USD':'symbol':'1.2-2'}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<form [formGroup]="carForm" (submit)="showCarForm()">
+
+    <div>
+      <label for="make-input">Make (updateOn: {{this.makeUpdateOn}})</label>
+      <input type="text" id="make-input" formControlName="makeInput" (blur)="showCarForm()" />
+    </div>
+    <div>
+      <label for="model-input">Model</label>
+      <input type="text" id="model-input" formControlName="modelInput" (blur)="showCarForm()" />
+    </div>
+    <div>
+      <label for="year-input">Year</label>
+      <input type="text" id="year-input" formControlName="yearInput" />
+    </div>
+    <div>
+      <label for="color-input">Color</label>
+      <input type="text" id="color-input" formControlName="colorInput" />
+    </div>
+    <div>
+      <label for="price-input">Price</label>
+      <input type="text" id="price-input" formControlName="priceInput" />
+    </div>
+
+    <button type="button" (click)="showCarForm()">Add Car (onClick)</button>
+    <button type="submit">Add Car (onSubmit)</button>
+
+  </form>
